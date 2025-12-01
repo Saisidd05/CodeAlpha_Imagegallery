@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Responsive image gallery with lightbox, filters, and effects">
+    <title>Image Gallery — Professional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <strong class="logo">Curator's<span class="accent">Choice</span></strong>
+          <small class="tagline">Precision Picks in Pixels</small>
+        </div>
+        <div class="toolbar">
+          <div class="controls">
+            <div class="filters" role="toolbar" aria-label="Category filters">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="nature">Nature</button>
+              <button class="filter-btn" data-filter="architecture">Architecture</button>
+              <button class="filter-btn" data-filter="people">People</button>
+              <button class="filter-btn" data-filter="animals">Animals</button>
+            </div>
+            <div class="effects">
+              <label for="effectSelect" class="sr-only">Image effect</label>
+              <select id="effectSelect">
+                <option value="none">Effect</option>
+                <option value="grayscale">Grayscale</option>
+                <option value="sepia">Sepia</option>
+                <option value="blur">Blur</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="gallery" id="gallery" aria-live="polite">
+        <!-- Initial thumbnails (will be extended programmatically) -->
+      </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <button class="lb-close" aria-label="Close">✕</button>
+      <button class="lb-prev" aria-label="Previous">◀</button>
+      <div class="lb-content">
+        <img id="lb-image" src="" alt="">
+        <div class="lb-meta">
+          <div class="lb-title" id="lb-caption"></div>
+          <div class="lb-actions">
+            <a id="downloadBtn" class="btn" download target="_blank">Download</a>
+            <span id="lb-index" class="index">0 / 0</span>
+          </div>
+        </div>
+        <div id="thumbStrip" class="thumb-strip" aria-hidden="false"></div>
+      </div>
+      <button class="lb-next" aria-label="Next">▶</button>
+    </div>
+
+    <!-- Add / Edit Image Modal -->
+    <div id="imageModal" class="modal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h3 id="modalTitle">Add Image</h3>
+        <form id="imageForm">
+          <input type="hidden" id="editingIndex" value="">
+          <label>Image URL
+            <input id="imgSrc" type="url" placeholder="https://.../image.jpg" required>
+          </label>
+          <label>High-res URL
+            <input id="imgHigh" type="url" placeholder="(optional) high-res URL">
+          </label>
+          <label>Title
+            <input id="imgTitle" type="text" placeholder="Image title" required>
+          </label>
+          <label>Photographer
+            <input id="imgPhotog" type="text" placeholder="Photographer name">
+          </label>
+          <label>Category
+            <input id="imgCategory" type="text" placeholder="nature / people / architecture">
+          </label>
+          <div class="modal-actions">
+            <button type="submit" class="btn">Save</button>
+            <button type="button" id="cancelModal" class="btn muted">Cancel</button>
+            <button type="button" id="deleteConfirm" class="btn danger" style="display:none">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Floating Add Button -->
+    <button id="openAdd" class="fab" title="Add image">＋</button>
+
+    <!-- Load more -->
+    <div class="load-more-wrap container">
+      <button id="loadMore" class="btn">Load more</button>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
